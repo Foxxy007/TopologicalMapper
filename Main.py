@@ -1,11 +1,10 @@
-# importing csv module
 import csv
- 
-# csv file name
-filename = "aapl.csv"
+
+jsonPATH = "config.json"
+csvPATH = "out.csv"
  
 # initializing the titles and rows list
-fields = []
+titles = []
 rows = []
  
 # reading csv file
@@ -14,7 +13,7 @@ with open(filename, 'r') as csvfile:
     csvreader = csv.reader(csvfile)
  
     # extracting field names through first row
-    fields = next(csvreader)
+    titles = next(csvreader)
  
     # extracting each data row one by one
     for row in csvreader:
@@ -24,12 +23,16 @@ with open(filename, 'r') as csvfile:
     print("Total no. of rows: %d" % (csvreader.line_num))
  
 # printing the field names
-print('Field names are:' + ', '.join(field for field in fields))
- 
+print('Field names are:' + ', '.join(field for field in titles))
+# print(rows)
+values = {}
+for row in rows:
+    values[row[0]]=row[1:-1]
+print(values)
 # printing first 5 rows
-print('\nFirst 5 rows are:\n')
-for row in rows[:5]:
-    # parsing each column of a row
-    for col in row:
-        print("%10s" % col, end=" "),
-    print('\n')
+# print('\nFirst 5 rows are:\n')
+# for row in rows[:5]:
+#     # parsing each column of a row
+#     for col in row:
+#         print("%10s" % col, end=" "),
+#     print('\n')

@@ -3,21 +3,26 @@ import matplotlib.pyplot as plt
 from matplotlib import cm
 from mpl_toolkits.mplot3d import Axes3D
 
-fig = plt.figure()
+config={"width":152, "length":42}
+
+class Plotter:
+    def __init__(self, config, values):
+        pass
+    def z_func(x, y):
+        return x**2
+
 ax = plt.axes(projection='3d')
 
-def f(x, y):
-    return np.sin(np.sqrt(x ** 2 + y ** 2))
-
-x = np.linspace(-1, 1, 100)
-y = np.linspace(-1, 1, 100)
-
+x = np.linspace(0, config["width"], config["width"])
+y = np.linspace(0, config["length"], config["length"])
+print(x)
+print(y)
 X, Y = np.meshgrid(x, y)
 print(list(X))
-Z = f(X, Y)
+Z = Plotter.z_func(X, Y)
 
 ax.plot_surface(X, Y, Z, rstride=1, cstride=1,
-                cmap='viridis', edgecolor='none')
+                cmap='coolwarm', edgecolor='none')
 ax.set_title('Surface')
 ax.set_xlabel('X')
 ax.set_ylabel('Y')

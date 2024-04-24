@@ -4,11 +4,12 @@ jsonPATH = "config.json"
 csvPATH = "out.csv"
  
 # initializing the titles and rows list
+configs = {}
 titles = []
 rows = []
  
 # reading csv file
-with open(filename, 'r') as csvfile:
+with open(csvPATH, 'r') as csvfile:
     # creating a csv reader object
     csvreader = csv.reader(csvfile)
  
@@ -27,8 +28,11 @@ print('Field names are:' + ', '.join(field for field in titles))
 # print(rows)
 values = {}
 for row in rows:
-    values[row[0]]=row[1:-1]
+    values[float(row[0])]=[float(it) for it in row[1:-1]]
 print(values)
+
+plot = Plotter(conf, values)
+plot.display()
 # printing first 5 rows
 # print('\nFirst 5 rows are:\n')
 # for row in rows[:5]:
